@@ -18,11 +18,11 @@ public class DatabaseClient {
 
     public function getAllUsers() returns User[]|error {
         // Execute query to retrieve all users from the User table
-        stream<User, sql:Error?> userStream = self.db->query(`SELECT * FROM User`);
+        stream<User, sql:Error?> userStream = self.db->query(getAllUsersQuery());
 
         User[] userArray = [];
         error? result = userStream.forEach(function(User user) {
-        userArray.push(user);
+            userArray.push(user);
         });
 
         check userStream.close();
@@ -30,7 +30,7 @@ public class DatabaseClient {
     }
 
     public function getUser(string id) returns User|error {
-        stream<User, sql:Error?> userStream = self.db->query(`SELECT * FROM User WHERE ID = ${id}`);
+        stream<User, sql:Error?> userStream = self.db->query(getUserQuery(id));
         
         record {| User value; |}? result = check userStream.next();
         check userStream.close();
@@ -42,23 +42,23 @@ public class DatabaseClient {
     }
 
     public function addUser(User newUser) returns error? {
-        _ = check self.db->execute(`INSERT INTO User (id, name, email, age, role) VALUES (${newUser.id}, ${newUser.name}, ${newUser.email}, ${newUser.age}, ${newUser.role})`);
+        _ = check self.db->execute(addUserQuery(newUser));
         io:println("Successfully added user");
     }
 
     public function deleteUser(string id) returns error? {
-        _ = check self.db->execute(`DELETE FROM User WHERE id = ${id}`);
+        _ = check self.db->execute(deleteUserQuery(id));
         io:println("Deleted user successfully");
     }
 
     public function updateUser(string id, User user) returns error? {
-        _ = check self.db->execute(`UPDATE User SET name = ${user.name}, email = ${user.email}, age = ${user.age}, role = ${user.role} WHERE id = ${id}`);
+        _ = check self.db->execute(updateUserQuery(id, user));
         io:println("Updated user sucessfully.");
     }
 
     public function searchUser(string name) returns User[] | error {
         io:println( "name: " + name);
-        stream<User, sql:Error?> userStream = self.db->query(`SELECT * FROM User WHERE name = ${name}`);
+        stream<User, sql:Error?> userStream = self.db->query(searchUserQuery(name));
         
         User[] userArray = [];
         error? result = userStream.forEach(function(User user) {
@@ -68,7 +68,6 @@ public class DatabaseClient {
         foreach User user in userArray {
             io:println(user.name + user.email);
         }
-        // check userStream.close();
         return userArray;
     }
 
