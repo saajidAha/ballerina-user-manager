@@ -217,5 +217,5 @@ Example Payload:
 | 201  | Created     |                |
 | 400  | Bad Request | 
 ```json
-{ "error": "Failed to add new user. Please check if the you have added the user info in a correct format" }
+{ "error" : "Failed to add new user. Please check the format of the request body or Ensure that that the provided id is not same as an existing user." }
 ```
