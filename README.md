@@ -1,8 +1,20 @@
 # User Management Backend
 
-> **Note:** Please set up a local MySQL database and edit the `modules/database/client.bal` file based on your database configuration. Then, create a table called `User` in your database according to the structure defined in `modules/database/types.bal`.
+> **Note:** Please set up a `Config.toml` file in the root directory and configure your database connection.
 >
-> **Demo:** A demo video is also available in the root of this repository as `DEMO_VIDEO.webm`.
+> Example `Config.toml`:
+> ```toml
+> [backend.database.dbConfig]
+> HOST = "localhost"
+> PORT = 3306
+> USER = "root"
+> PASSWORD = "your_password"
+> DATABASE = "user_management"
+> ```
+>
+> **Demo:** A demo video is available in the root of this repository as `DEMO_VIDEO.webm`.
+>
+> **User table:** A User table will be automatically be created in your database and it will be populated with sample data.
 
 ## Version: 1
 
