@@ -1,0 +1,6 @@
+[backend.database.dbConfig]
+HOST = "localhost"
+USER = "root"
+PASSWORD = "abc123"
+DATABASE = "test"
+PORT = 3306

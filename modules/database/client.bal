@@ -1,11 +1,7 @@
 import ballerinax/mysql;
 
-// Variables for the database configurations
-configurable string HOST = "localhost";
-configurable int PORT = 3306;
-configurable string USER = "root";
-configurable string PASSWORD = "abc123";
-configurable string DATABASE = "test";
+// load the database configuration variables from the config.toml
+public configurable DatabaseConfig dbConfig = ?;
 
 // Initialize a database connection
-public final mysql:Client db_connection = check new (host = HOST, user = USER, password = PASSWORD, database = DATABASE, port = PORT);
+public final mysql:Client db_connection = check new (host = dbConfig.HOST, user = dbConfig.USER, password = dbConfig.PASSWORD, database = dbConfig.DATABASE, port = dbConfig.PORT);
