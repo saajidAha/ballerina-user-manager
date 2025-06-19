@@ -2,67 +2,6 @@
 
 ## Version: 1
 
-### /users
-
-#### GET
-
-##### Summary:
-Retrieve all users.
-
-##### Responses
-
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 200  | OK          | ```json
-[
-  {
-    "id": "1",
-    "name": "Alice",
-    "email": "alice@example.com",
-    "age": 25,
-    "role": "admin"
-  }
-]
-``` |
-| 500  | Internal Server Error | ```json
-{ "message": "Error occurred while retrieving users." }
-``` |
-
----
-
-#### POST
-
-##### Summary:
-Add a new user.
-
-##### Parameters
-
-| Name    | Located in | Description      | Required | Schema |
-|---------|------------|------------------|----------|--------|
-| newUser | Payload    | User to add      | Yes      | User   |
-
-Example Payload:
-```json
-{
-  "id": "2",
-  "name": "Bob",
-  "email": "bob@example.com",
-  "age": 30,
-  "role": "user"
-}
-```
-
-##### Responses
-
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 201  | Created     |                |
-| 400  | Bad Request | ```json
-{ "message": "Invalid user data." }
-``` |
-
----
-
 ### /users/{id}
 
 #### GET
@@ -78,20 +17,10 @@ Retrieve a user by ID.
 
 ##### Responses
 
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 200  | OK          | ```json
-{
-  "id": "1",
-  "name": "Alice",
-  "email": "alice@example.com",
-  "age": 25,
-  "role": "admin"
-}
-``` |
-| 404  | Not Found   | ```json
-{ "message": "User not found." }
-``` |
+| Code | Description |
+|------|-------------|
+| 200  | Success     |
+| 404  | Not Found   |
 
 ---
 
@@ -120,12 +49,11 @@ Example Payload:
 
 ##### Responses
 
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 200  | OK          |                |
-| 400  | Bad Request | ```json
-{ "message": "Invalid user data." }
-``` |
+| Code | Description |
+|------|-------------|
+| 200  | Success     |
+| 400  | Bad Request |
+| 404  | Not Found   |
 
 ---
 
@@ -142,12 +70,11 @@ Delete a user by ID.
 
 ##### Responses
 
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 204  | No Content  |                |
-| 400  | Bad Request | ```json
-{ "message": "Invalid user ID." }
-``` |
+| Code | Description |
+|------|-------------|
+| 204  | No Content  |
+| 404  | Not Found   |
+| 500  | Internal Server Error |
 
 ---
 
@@ -166,19 +93,54 @@ Search for users by name.
 
 ##### Responses
 
-| Code | Description | Example Payload |
-|------|-------------|----------------|
-| 200  | OK          | ```json
-[
-  {
-    "id": "1",
-    "name": "Alice",
-    "email": "alice@example.com",
-    "age": 25,
-    "role": "admin"
-  }
-]
-``` |
-| 400  | Bad Request | ```json
-{ "message": "Invalid query parameter." }
-``` |
+| Code | Description |
+|------|-------------|
+| 200  | Success     |
+| 404  | Not Found   |
+
+---
+
+### /users
+
+#### GET
+
+##### Summary:
+Retrieve all users.
+
+##### Responses
+
+| Code | Description |
+|------|-------------|
+| 200  | Success     |
+| 500  | Internal Server Error |
+
+---
+
+#### POST
+
+##### Summary:
+Add a new user.
+
+##### Parameters
+
+| Name    | Located in | Description      | Required | Schema |
+|---------|------------|------------------|----------|--------|
+| newUser | Payload    | User to add      | Yes      | User   |
+
+Example Payload:
+```json
+{
+  "id": "2",
+  "name": "Bob",
+  "email": "bob@example.com",
+  "age": 30,
+  "role": "user"
+}
+```
+
+##### Responses
+
+| Code | Description |
+|------|-------------|
+| 201  | Created     |
+| 400  | Bad Request |
