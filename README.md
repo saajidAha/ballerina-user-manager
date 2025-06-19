@@ -1,5 +1,7 @@
 # User Management Backend
 
+> **Note:** Please set up a local MySQL database and edit the `Client.bal` file based on your database configuration. Then, create a table called `User` in your database according to the structure defined in `types.bal` before perfoming any testing of the API.
+
 ## Version: 1
 
 ### /users/{id}
