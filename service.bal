@@ -1,11 +1,13 @@
 import ballerina/http;
 import backend.database;
 
-// create User table and and populate it;
-error? populateDB = database:createAndPopulateDB();
-
 # User management REST API service
 service / on new http:Listener(9090){
+
+    // create User table in the Database and and populate it;
+    function init(){
+        error? populateDB = database:createAndPopulateDB();
+    }
 
     # Get a user by ID
     # + id - User ID
@@ -111,6 +113,7 @@ service / on new http:Listener(9090){
         if result is error{
             res.statusCode = 500;
             res.setPayload({"error": "Failed to delete user with id: " + id});
+            return res;
         }
         res.statusCode = 204;
         return res;
