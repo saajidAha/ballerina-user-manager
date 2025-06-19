@@ -2,8 +2,8 @@ import ballerina/sql;
 import ballerinax/mysql.driver as _;
 import ballerina/io;
 
-/// Fetch all users from the User table.
-/// + return - Array of User records or error
+# Fetch all users from the User table.
+# + return - Array of User records or error
 public function getAllUsers() returns User[]|error {
     // Execute query to retrieve all users from the User table
     stream<User, sql:Error?> userStream = db_connection->query(getAllUsersQuery());
@@ -17,9 +17,9 @@ public function getAllUsers() returns User[]|error {
     return userArray;
 }
 
-/// Fetch a user by ID.
-/// + id - User ID
-/// + return - User record or error
+# Fetch a user by ID.
+# + id - User ID
+# + return - User record or error
 public function getUser(string id) returns User|error {
     stream<User, sql:Error?> userStream = db_connection->query(getUserQuery(id));
     
@@ -32,34 +32,34 @@ public function getUser(string id) returns User|error {
     return result.value;
 }
 
-/// Add a new user to the User table.
-/// + newUser - User record to add
-/// + return - error? (nil if successful)
+# Add a new user to the User table.
+# + newUser - User record to add
+# + return - error? (nil if successful)
 public function addUser(User newUser) returns error? {
     _ = check db_connection->execute(addUserQuery(newUser));
     io:println("Successfully added user");
 }
 
-/// Delete a user by ID.
-/// + id - User ID
-/// + return - error? (nil if successful)
+# Delete a user by ID.
+# + id - User ID
+# + return - error? (nil if successful)
 public function deleteUser(string id) returns error? {
     _ = check db_connection->execute(deleteUserQuery(id));
     io:println("Deleted user successfully");
 }
 
-/// Update a user by ID.
-/// + id - User ID
-/// + user - Updated User record
-/// + return - error? (nil if successful)
+# Update a user by ID.
+# + id - User ID
+# + user - Updated User record
+# + return - error? (nil if successful)
 public function updateUser(string id, User user) returns error? {
     _ = check db_connection->execute(updateUserQuery(id, user));
     io:println("Updated user sucessfully.");
 }
 
-/// Search users by name.
-/// + name - Name to search for
-/// + return - Array of User records or error
+# Search users by name.
+# + name - Name to search for
+# + return - Array of User records or error
 public function searchUser(string name) returns User[] | error {
     io:println( "name: " + name);
     stream<User, sql:Error?> userStream = db_connection->query(searchUserQuery(name));
