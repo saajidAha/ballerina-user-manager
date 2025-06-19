@@ -1,16 +1,16 @@
 import ballerina/sql;
 
-// Build query to fetch all users.
-// + return - sql:ParameterizedQuery for select all
+# Build query to fetch all users.
+# + return - sql:ParameterizedQuery for select all
 isolated function getAllUsersQuery() returns sql:ParameterizedQuery =>
     `SELECT
         *
      FROM
         User`;
 
-// Build query to fetch a user by ID.
-// + id - User ID
-// + return - sql:ParameterizedQuery for select by ID
+# Build query to fetch a user by ID.
+# + id - User ID
+# + return - sql:ParameterizedQuery for select by ID
 isolated function getUserQuery(string id) returns sql:ParameterizedQuery =>
     `SELECT
         *
@@ -19,9 +19,9 @@ isolated function getUserQuery(string id) returns sql:ParameterizedQuery =>
      WHERE
         id = ${id}`;
 
-// Build query to search users by name.
-// + name - Name to search for
-// + return - sql:ParameterizedQuery for search
+# Build query to search users by name.
+# + name - Name to search for
+# + return - sql:ParameterizedQuery for search
 isolated function searchUserQuery(string name) returns sql:ParameterizedQuery =>
     `SELECT
         *
@@ -30,9 +30,9 @@ isolated function searchUserQuery(string name) returns sql:ParameterizedQuery =>
      WHERE
         name = ${name}`;
 
-// Build query to add a user.
-// + user - User record to add
-// + return - sql:ParameterizedQuery for insert
+# Build query to add a user.
+# + user - User record to add
+# + return - sql:ParameterizedQuery for insert
 isolated function addUserQuery(User user) returns sql:ParameterizedQuery =>
     `INSERT INTO User
         (
@@ -51,19 +51,19 @@ isolated function addUserQuery(User user) returns sql:ParameterizedQuery =>
             ${user.role}
         )`;
 
-// Build query to delete a user by ID.
-// + id - User ID
-// + return - sql:ParameterizedQuery for delete
+# Build query to delete a user by ID.
+# + id - User ID
+# + return - sql:ParameterizedQuery for delete
 isolated function deleteUserQuery(string id) returns sql:ParameterizedQuery =>
     `DELETE FROM
         User
      WHERE
         id = ${id}`;
 
-// Build query to update a user by ID.
-// + id - User ID
-// + user - Updated User record
-// + return - sql:ParameterizedQuery for update
+# Build query to update a user by ID.
+# + id - User ID
+# + user - Updated User record
+# + return - sql:ParameterizedQuery for update
 isolated function updateUserQuery(string id, User user) returns sql:ParameterizedQuery =>
     `UPDATE
         User

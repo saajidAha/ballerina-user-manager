@@ -1,6 +1,6 @@
 import ballerina/sql;
-import ballerinax/mysql.driver as _;
 import ballerina/io;
+import ballerinax/mysql.driver as _;
 
 # Fetch all users from the User table.
 # + return - Array of User records or error
