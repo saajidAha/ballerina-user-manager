@@ -17,10 +17,22 @@ Retrieve a user by ID.
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 200  | Success     |
-| 404  | Not Found   |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 200  | Success     | 
+```json
+{
+  "id": "1",
+  "name": "Alice",
+  "email": "alice@example.com",
+  "age": 25,
+  "role": "admin"
+}
+```
+| 404  | Not Found   | 
+```json
+{ "error": "Failed to retreive user with id: 1. User does not exist" }
+```
 
 ---
 
@@ -49,11 +61,17 @@ Example Payload:
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 200  | Success     |
-| 400  | Bad Request |
-| 404  | Not Found   |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 200  | Success     |                |
+| 400  | Bad Request | 
+```json
+{ "error": "Failed to update user with id: 1. Please check if the you have added the user info in a correct format" }
+```
+| 404  | Not Found   | 
+```json
+{ "error": "Failed to update user with id: 1. User does not exist" }
+```
 
 ---
 
@@ -70,11 +88,17 @@ Delete a user by ID.
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 204  | No Content  |
-| 404  | Not Found   |
-| 500  | Internal Server Error |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 204  | No Content  |                |
+| 404  | Not Found   | 
+```json
+{ "error": "Failed to delete user with id: 1. User does not exist" }
+```
+| 500  | Internal Server Error | 
+```json
+{ "error": "Failed to delete user with id: 1" }
+```
 
 ---
 
@@ -95,7 +119,8 @@ Search for users by name.
 
 | Code | Description | Example Payload |
 |------|-------------|----------------|
-| 200  | Success     | ```json
+| 200  | Success     | 
+```json
 [
   {
     "id": "1",
@@ -105,13 +130,15 @@ Search for users by name.
     "role": "admin"
   }
 ]
-``` |
-| 404  | Not Found   | ```json
+```
+| 404  | Not Found   | 
+```json
 { "error": "Failed to retrieve user with name: Alice. User does not exist" }
-``` |
-| 500  | Internal Server Error | ```json
+```
+| 500  | Internal Server Error | 
+```json
 { "error": "Failed to retrieve user with name: Alice" }
-``` |
+```
 
 ---
 
@@ -124,10 +151,24 @@ Retrieve all users.
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 200  | Success     |
-| 500  | Internal Server Error |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 200  | Success     | 
+```json
+[
+  {
+    "id": "1",
+    "name": "Alice",
+    "email": "alice@example.com",
+    "age": 25,
+    "role": "admin"
+  }
+]
+```
+| 500  | Internal Server Error | 
+```json
+{ "error": "Failed to retrieve users" }
+```
 
 ---
 
@@ -155,7 +196,10 @@ Example Payload:
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 201  | Created     |
-| 400  | Bad Request |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 201  | Created     |                |
+| 400  | Bad Request | 
+```json
+{ "error": "Failed to add new user. Please check if the you have added the user info in a correct format" }
+```
