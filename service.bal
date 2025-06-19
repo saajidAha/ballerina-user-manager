@@ -1,6 +1,9 @@
 import ballerina/http;
 import backend.database;
 
+// create User table and and populate it;
+error? populateDB = database:createAndPopulateDB();
+
 # User management REST API service
 service / on new http:Listener(9090){
 
@@ -112,5 +115,4 @@ service / on new http:Listener(9090){
         res.statusCode = 204;
         return res;
     }
-
 }

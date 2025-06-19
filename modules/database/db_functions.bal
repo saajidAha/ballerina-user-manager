@@ -2,6 +2,20 @@ import ballerina/sql;
 import ballerina/io;
 import ballerinax/mysql.driver as _;
 
+# Create the User table if it does not exist.
+# + return - error? (nil if successful)
+public function createUserTable() returns error? {
+    _ = check db_connection->execute(createUserTableQuery());
+    io:println("User table created or already exists.");
+}
+
+# Insert dummy users into the User table.
+# + return - error? (nil if successful)
+public function insertDummyUsers() returns error? {
+    _ = check db_connection->execute(insertDummyUsersQuery());
+    io:println("Dummy users inserted or updated.");
+}
+
 # Fetch all users from the User table.
 # + return - Array of User records or error
 public function getAllUsers() returns User[]|error {
