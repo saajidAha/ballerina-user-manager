@@ -93,10 +93,25 @@ Search for users by name.
 
 ##### Responses
 
-| Code | Description |
-|------|-------------|
-| 200  | Success     |
-| 404  | Not Found   |
+| Code | Description | Example Payload |
+|------|-------------|----------------|
+| 200  | Success     | ```json
+[
+  {
+    "id": "1",
+    "name": "Alice",
+    "email": "alice@example.com",
+    "age": 25,
+    "role": "admin"
+  }
+]
+``` |
+| 404  | Not Found   | ```json
+{ "error": "Failed to retrieve user with name: Alice. User does not exist" }
+``` |
+| 500  | Internal Server Error | ```json
+{ "error": "Failed to retrieve user with name: Alice" }
+``` |
 
 ---
 
