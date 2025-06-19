@@ -21,16 +21,21 @@ service / on new http:Listener(9090){
 
     # Search for a user by name
     # + name - User name
-    # + return - 200: Success, 404: Not Found
+    # + return - 200: Success, 404: Not Found, 500 Internal Server Error
     resource function get user(@http:Query string name) returns http:Response{
         database:User[] | error result = database:searchUser(name);
         http:Response res = new;
 
         if result is error{
-            res.statusCode = 404;
+            res.statusCode = 500;
             res.setPayload({"error": "Failed to retrieve user with name: " + name});
             return res;
         } 
+        if(result.length()==0){
+            res.statusCode = 404;
+            res.setPayload({"error": "Failed to retrieve user with name: " + name + ". User does not exist"});
+            return res;
+        }
         res.statusCode = 200;
         res.setPayload(result);
         return res;
