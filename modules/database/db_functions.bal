@@ -1,5 +1,4 @@
 import ballerina/sql;
-import ballerinax/mysql.driver as _;
 
 # Create the User table if it does not exist.
 # + return - error? (nil if successful)

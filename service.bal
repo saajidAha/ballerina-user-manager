@@ -20,7 +20,7 @@ service / on new http:Listener(9090){
             res.setPayload({"error" :"Failed to retreive user with id: " + id + ". User does not exist"});
             return res;
         }
-        res.setPayload(user);
+        res.setPayload(user.toJson());
         return res;
     }
 
@@ -42,7 +42,7 @@ service / on new http:Listener(9090){
             return res;
         }
         res.statusCode = 200;
-        res.setPayload(result);
+        res.setPayload(result.toJson());
         return res;
     }
 
@@ -57,7 +57,7 @@ service / on new http:Listener(9090){
             return res;
         }
         res.statusCode = 200;
-        res.setPayload(users);
+        res.setPayload(users.toJson());
         return res;
     }
 

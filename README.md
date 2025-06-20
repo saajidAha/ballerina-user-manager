@@ -1,3 +1,5 @@
+> **Note:** This project is designed and tested for **Ballerina 2201.8.6 (Swan Lake Update 8)**. Compatibility with other Ballerina versions is not guaranteed.
+
 # User Management Backend
 
 > **Note:** Please set up a `Config.toml` file in the root directory and configure your database connection.
