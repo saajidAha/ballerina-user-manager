@@ -3,7 +3,6 @@ org = "saajid"
 name = "backend"
 version = "0.1.0"
 distribution = "2201.8.6"
-# distribution = "2201.12.7"
 
 [build-options]
 observabilityIncluded = true
