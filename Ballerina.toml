@@ -1,13 +1,8 @@
 [package]
 org = "saajid"
-name = "backend"
-distribution = "2201.8.6"
+name = "backend_2"
 version = "0.1.0"
+distribution = "2201.8.6"
 
 [build-options]
 observabilityIncluded = true
-
-[[dependency]]
-org = "ballerinax"
-name = "mysql"
-version = "1.7.0"
